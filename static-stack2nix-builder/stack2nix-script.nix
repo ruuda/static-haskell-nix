@@ -54,6 +54,7 @@
     set -eu -o pipefail
     export NIX_PATH=nixpkgs=${pkgs.path}
     export PATH=${pkgs.lib.concatStringsSep ":" add_to_PATH}:$PATH
+    export LANG=en_US.utf8
     OUT_DIR=$(mktemp --directory -t stack2nix-output-dir.XXXXXXXXXX)
     set -x
     ${pkgs.stack2nix}/bin/stack2nix "${stack-project-dir}" --stack-yaml "${stack-yaml}" --hackage-snapshot "${hackageSnapshot}" -o "$OUT_DIR/stack2nix-output.nix" "$@" 1>&2
